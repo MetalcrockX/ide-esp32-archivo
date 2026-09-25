@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ide-core"
+version = "1.0.0"
+description = "Base del IDE ESP32: API gateway, registro de modulos y utilidades."
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Equipo GRIS"}]
+
+# NOTA: las dependencias de produccion viven en la RAIZ del monorepo
+# (requirements.txt). Este archivo solo declara el paquete.
+dependencies = []
+
+[tool.setuptools]
+packages = ["ide_core", "ide_core.config", "ide_core.db",
+            "ide_core.models", "ide_core.controllers", "ide_core.utils"]
+package-dir = {"" = "."}
+
+[tool.setuptools.package-data]
+"*" = ["*.py"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311", "py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+known_first_party = ["ide_core"]
+
+[tool.pylint.messages_control]
+disable = ["missing-module-docstring", "too-few-public-methods"]
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["pruebas"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"

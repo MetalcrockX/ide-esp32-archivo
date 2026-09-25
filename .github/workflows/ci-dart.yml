@@ -1,0 +1,57 @@
+# Archivo: .github/workflows/ci-dart.yml
+# CI para paquetes Flutter/Dart (core, modulo, shell).
+
+name: CI - Flutter (Monorepo)
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  core-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: core/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+      - run: flutter pub get
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: flutter analyze
+      - run: flutter test
+
+  herramientas-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: modules/herramientas/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+  ide-app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/ide
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test

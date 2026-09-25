@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "herramientas-backend"
+version = "1.0.0"
+description = "Modulo Herramientas para el IDE ESP32 (equipo GRIS)."
+requires-python = ">=3.11"
+
+# NOTA: dependencias centralizadas en la RAIZ (requirements.txt).
+# Solo se declara ide-core como dependencia interna del monorepo.
+dependencies = []
+
+[tool.setuptools]
+packages = ["herramientas_backend", "herramientas_backend.config",
+            "herramientas_backend.models", "herramientas_backend.controllers",
+            "herramientas_backend.utils"]
+package-dir = {"" = "."}
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+known_first_party = ["herramientas_backend", "ide_core"]
+
+[tool.pytest.ini_options]
+testpaths = ["pruebas"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"

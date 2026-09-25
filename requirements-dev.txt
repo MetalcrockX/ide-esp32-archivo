@@ -1,0 +1,19 @@
+# ============================================================================
+# REQUISITOS DE DESARROLLO Y PRUEBAS - MONOREPO COMPLETO
+# ============================================================================
+# Incluye los requisitos de produccion + herramientas de desarrollo.
+# Instalar con: pip install -r requirements-dev.txt
+#
+# Versiones verificadas: Septiembre 2026
+
+-r requirements.txt
+
+# --- Testing ---
+pytest==9.1.1
+pytest-cov==4.1.0
+httpx==0.28.1
+
+# --- Linters / Formatters ---
+black==26.5.1
+isort==9.0.1
+pylint==4.0.8

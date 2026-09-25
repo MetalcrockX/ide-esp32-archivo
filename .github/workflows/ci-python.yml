@@ -1,0 +1,63 @@
+# Archivo: .github/workflows/ci-python.yml
+# CI para Python (core + modulos). Dependencias centralizadas en la raiz.
+
+name: CI - Python (Monorepo)
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'core/backend/**'
+      - 'modules/**/backend/**'
+      - 'requirements*.txt'
+      - '.github/workflows/ci-python.yml'
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  validacion:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.11', '3.12']
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Instalar core (editable)
+        working-directory: core/backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Instalar modulo herramientas (editable)
+        working-directory: modules/herramientas/backend
+        run: pip install -e .
+
+      - name: Instalar dependencias de desarrollo (RAIZ)
+        run: pip install -r requirements-dev.txt
+
+      - name: Verificar ausencia de __init__.py
+        shell: bash
+        run: |
+          if find . -name "__init__.py" -not -path "./venv/*" | grep -q .; then
+            echo "ERROR: __init__.py prohibido"; exit 1
+          fi
+
+      - name: Formato (black)
+        run: black --check core/backend modules/herramientas/backend
+
+      - name: Imports (isort)
+        run: isort --check-only core/backend modules/herramientas/backend
+
+      - name: Pruebas core
+        working-directory: core/backend
+        run: pytest pruebas/ -v
+
+      - name: Pruebas modulo herramientas
+        working-directory: modules/herramientas/backend
+        run: pytest pruebas/ -v

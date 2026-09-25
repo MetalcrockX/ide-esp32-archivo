@@ -1,0 +1,3 @@
+-- Archivo: sql/05_rbac_grants.sql
+-- SQLite no implementa GRANT/REVOKE. El RBAC se maneja en
+-- core/backend/ide_core/controllers/auth.py.

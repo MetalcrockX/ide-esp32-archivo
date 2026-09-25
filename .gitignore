@@ -1,0 +1,45 @@
+#  Python 
+__pycache__/
+*.py[cod]
+*.py.class
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.egg-info/
+build/
+dist/
+
+#  Flutter / Dart 
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+coverage/
+
+#  Datos locales 
+datos/
+*.db
+*.db-wal
+*.db-shm
+logs/
+*.log
+
+#  IDE 
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+#  Entorno 
+.env
+.env.local
+
+#  OS 
+.DS_Store
+Thumbs.db

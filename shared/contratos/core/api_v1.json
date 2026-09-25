@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contrato API - Core IDE",
+  "version": "1.0.0",
+  "prefijo": "/api/v1",
+  "endpoints": {
+    "GET /api/v1/salud": {
+      "respuesta": {
+        "estado": "ok",
+        "app": "IDE ESP32 - Core",
+        "version": "1.0.0"
+      }
+    },
+    "GET /api/v1/modulos": {
+      "respuesta": {
+        "modulos": [
+          { "nombre": "herramientas", "version": "1.0.0", "activo": true }
+        ]
+      }
+    }
+  }
+}

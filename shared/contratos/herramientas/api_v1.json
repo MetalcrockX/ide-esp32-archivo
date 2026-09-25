@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contrato API - Modulo Herramientas",
+  "version": "1.0.0",
+  "prefijo": "/api/v1/herramientas",
+  "endpoints": {
+    "GET /puertos":            { "respuesta": { "total": 0, "puertos": [] } },
+    "GET /arduino/version":    { "respuesta": { "exitoso": true, "salida": "", "error": "" } },
+    "GET /arduino/placas":     { "respuesta": { "exitoso": true, "salida": "", "error": "" } },
+    "GET /reportes/flash":     { "respuesta": { "total": 0, "exitosos": 0, "fallidos": 0 } }
+  }
+}
