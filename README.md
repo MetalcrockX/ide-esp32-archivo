@@ -1,6 +1,6 @@
 # IDE ESP32 (Monorepo)
 
-**Equipo inicial**: GRIS | **Version**: 6.0 | **Fecha**: 24 sep. 2026
+**Equipo inicial**: GRIS **Modificacion**: Cafe | **Version**: 6.0 | **Fecha**: 25 sep. 2026
 
 Monorepo del IDE a la medida para ESP32-S31. El **IDE es el producto**;
 `herramientas` es **un modulo plug-in** entre varios que equipos distintos
